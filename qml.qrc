@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>background.jpg</file>
+        <file>001-arrow.png</file>
+        <file>Input.qml</file>
+    </qresource>
+</RCC>
