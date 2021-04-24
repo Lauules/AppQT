@@ -4,5 +4,6 @@
         <file>background.jpg</file>
         <file>001-arrow.png</file>
         <file>Input.qml</file>
+        <file>CustomButton.qml</file>
     </qresource>
 </RCC>

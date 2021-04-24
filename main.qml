@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Material 2.12
@@ -27,38 +27,32 @@ Window {
 
     Component {
         id: mainView
-        GridLayout {
-            columns: 1
-            anchors.bottom: parent.bottom
-            height: 100
-            Button {
-                text: qsTr("se connecter")
+        Item {
+            id: bodyHome
 
-                Layout.fillWidth: true
-                Layout.rightMargin: 5
-                Layout.leftMargin: 5
-                Layout.preferredHeight: 40
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            GridLayout {
+                columns: 1
+                anchors.bottom: parent.bottom
+                anchors.margins: 10
+                width: parent.width
 
-                highlighted: true
-                Material.accent: Material.Orange
+                // Button pour se connecter
+                // renvoie au formulaire de connexion
+                CustomButton {
+                    title: "se connecter"
+                    function action() {
+                        stack.push(loginView)
+                    }
+                }
 
-                onClicked: stack.push(loginView)
-            }
-            Button {
-                text: qsTr("s'inscrire")
-
-                Layout.fillWidth: true
-                Layout.rightMargin: 5
-                Layout.leftMargin: 5
-                Layout.preferredHeight: 40
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                Layout.bottomMargin: 20
-
-                highlighted: true
-                Material.accent: Material.Orange
-
-                onClicked: stack.push(registerView)
+                // Button pour s'inscrire
+                // renvoie au formulaire d'inscription
+                CustomButton {
+                    title: "s'inscrire"
+                    function action() {
+                        stack.push(registerView)
+                    }
+                }
             }
         }
     }
@@ -68,6 +62,7 @@ Window {
         Item {
             id: bodyLogin
 
+            // Bouton pour revenir sur la page arrière
             Item {
                 anchors.top: parent.top
                 anchors.margins: 10
@@ -90,36 +85,25 @@ Window {
                 anchors.verticalCenter: parent.verticalCenter
                 width: parent.width
 
-                Text {
-                    text: qsTr("Entrer votre email")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type text pour l'email
                 Input {
-                    id: emailnput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    id: emailInput
+                    title: "Entrer votre email"
                 }
 
-                Text {
-                    text: qsTr("Entrer votre mot de passe")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type password pour le mot de passe
                 Input {
                     id: passwordInput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    title: "Entrer votre mot de passe"
                     echoMode: TextInput.Password
                 }
 
-                Button {
-                    text: qsTr("connexion")
-
-                    Layout.fillWidth: true
-                    Layout.rightMargin: 5
-                    Layout.leftMargin: 5
-                    Layout.preferredHeight: 40
-
-                    highlighted: true
-                    Material.accent: Material.Orange
-
+                // Button pour se connecter
+                CustomButton {
+                    title: "connexion"
+                    function action() {
+                        console.log("l'utilisateur se connecte")
+                    }
                 }
 
             }
@@ -131,6 +115,7 @@ Window {
         Item {
             id: bodyRegister
 
+            // Bouton pour revenir sur la page arrière
             Item {
                 anchors.top: parent.top
                 anchors.margins: 10
@@ -161,67 +146,46 @@ Window {
                     passwordInput.clear()
                 }
 
-                Text {
-                    text: qsTr("Entrer votre nom")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type text pour le nom
                 Input {
                     id: nameInput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    title: "Entrer votre nom"
                 }
 
-                Text {
-                    text: qsTr("Entrer votre prénom")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type text pour le prénom
                 Input {
                     id: surnameInput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    title: "Entrer votre prénom"
                 }
 
-                Text {
-                    text: qsTr("Entrer votre email")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type text pour l'email
                 Input {
                     id: emailInput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    title: "Entrer votre email"
                 }
 
-                Text {
-                    text: qsTr("Entrer un mot de passe")
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }
+                // input type password pour le mot de passe
                 Input {
                     id: passwordInput
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    title: "Entrer un mot de passe"
                     echoMode: TextInput.Password
                 }
 
-                Button {
-                    text: qsTr("annuler")
-
-                    Layout.fillWidth: true
-                    Layout.rightMargin: 5
-                    Layout.leftMargin: 5
-                    Layout.preferredHeight: 40
-
-                    highlighted: true
-                    Material.accent: Material.Orange
-
-                    onClicked: form.clear()
+                // Bouton annuler
+                // Permet d'effacer les champs
+                CustomButton {
+                    title: "annuler"
+                    function action() {
+                        form.clear()
+                    }
                 }
 
-                Button {
-                    text: qsTr("créer mon compte")
-
-                    Layout.fillWidth: true
-                    Layout.rightMargin: 5
-                    Layout.leftMargin: 5
-                    Layout.preferredHeight: 40
-
-                    highlighted: true
-                    Material.accent: Material.Orange
+                // Bouton pour créer un compte
+                CustomButton {
+                    title: "créer mon compte"
+                    function action() {
+                        console.log("l'utilisateur créé son compte")
+                    }
                 }
 
             }
@@ -234,8 +198,4 @@ Window {
 
 }
 
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/
+
